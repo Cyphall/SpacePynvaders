@@ -6,6 +6,7 @@ import logging
 class fenetre():
 	def __init__(self, size=(640, 480)):
 		self.fenetre = pygame.display.set_mode(size)
+		self.fenetre = pygame.display.set_caption("Space Pynvaders")
 		self.spriteList = []
 	
 	
