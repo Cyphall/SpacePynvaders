@@ -139,7 +139,7 @@ class alien(sprite):
 	def move(self, dir, display):
 		if (self.actual == 1):
 			self.actual = 0
-		else:
+		elif (self.actual == 0):
 			self.actual = 1
 		if (dir == "l"):
 			self.pos["x"] -= 8
