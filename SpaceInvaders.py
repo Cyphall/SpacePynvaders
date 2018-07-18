@@ -261,9 +261,11 @@ while (running):
 						explosion = True
 						break
 		
-		
+		# Gestion du rendu à l'écran #
 		disp.render()
 		time.sleep(1/FPS)
+		
+		# incrémentation de l'index des aliens #
 		i += 1
 	
 	if (turning):
@@ -277,5 +279,4 @@ while (running):
 		turning = True
 		turningOnNextLoop = False
 	i = 0
-	
 #=== </Main> ===#
