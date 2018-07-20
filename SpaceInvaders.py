@@ -1,6 +1,5 @@
 import pygame
 import logging
-import time
 import os
 
 #=== <Classes> ===#
@@ -155,6 +154,8 @@ def hit(alien):
 # Initialisation du logger #
 logging.basicConfig(format='%(levelname)s: %(message)s', level=logging.INFO)
 
+os.environ['SDL_VIDEO_WINDOW_POS'] = str(200)+","+str(50)
+
 # Initialisation de pygame #
 pygame.mixer.pre_init(44100, -16, 1, 512)
 pygame.init()
@@ -208,6 +209,9 @@ for y in range(5):
 player = Player("player.png")
 player.setPos(y=disp.getDisplaySize()["y"]-(player.getSize()["y"]))
 
+# Initialisation de l'horloge #
+clock = pygame.time.Clock()
+
 # Premier rendu #
 disp.render()
 
@@ -240,7 +244,6 @@ while (running):
 				aliens.remove(toDelete)
 				toDelete = None
 				explosionFrame = 0
-				i -= 1
 		
 		# Gestion de la musique #
 		timing += 1
@@ -263,11 +266,13 @@ while (running):
 		
 		# Gestion du rendu à l'écran #
 		disp.render()
-		time.sleep(1/FPS)
+		clock.tick_busy_loop(FPS)
 		
 		# incrémentation de l'index des aliens #
 		i += 1
-	
+	if (len(aliens) == 0):
+		running = False
+		
 	if (turning):
 		if (direction == "l"):
 			direction = "r"
